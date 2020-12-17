@@ -16,18 +16,45 @@ let persons = [
 // NOTE: Use reduce method whereever you can to solve this exercise:
 
 // Find the average grade
-
+let averageGrade = persons.reduce((acc, person) => {
+     return acc + person.grade;
+}, 0) / persons.length;
+console.log(averageGrade);
 // Find the average grade of male
-
+let averageGradeMale = persons.reduce((acc, person) => {
+  return person.sex === "M" ? acc + person.grade : acc;
+}, 0) / persons.reduce((acc,person) => {
+  return person.sex === "M" ? acc + 1 : acc;
+},0);
+console.log(averageGradeMale);
 // Find the average grade of female
-
+let averageGradeFemale = persons.reduce((acc, person) => {
+  return person.sex === "F" ? acc + person.grade : acc;
+}, 0) / persons.reduce((acc,person) => {
+  return person.sex === "F" ? acc + 1 : acc;
+},0);;
+console.log(averageGradeFemale);
 // Find the highest grade
-
+let highestGrade = persons.reduce((acc, person) => {
+  return person.grade > acc ? person.grade : acc;
+}, 0);
+console.log(highestGrade);
 // Find the highest grade in male
+let highestGradeMale = persons.reduce((acc, person) => {
+  return (person.grade > acc && person.sex === "M") ? person.grade : acc;
+}, 0);
+console.log(highestGradeMale);
 
 // Find the highest grade in female
-
+let highestGradeFemale = persons.reduce((acc, person) => {
+  return (person.grade > acc && person.sex === "F") ? person.grade : acc;
+}, 0);
+console.log(highestGradeFemale);
 // Find the highest grade for people whose name starts with 'J' or 'P'
+let highestGradeJP = persons.reduce((acc, person) => {
+  return (person.grade > acc && (person.name[0]=='J' || person.name[0]=='P')) ? person.grade : acc;
+}, 0);
+console.log(highestGradeJP);
 
 const fruitBasket = [
   'banana',
@@ -51,6 +78,21 @@ that fruit has appeared in the array. Store it in new variable fruitsObj
 Output: 
 {banana: 2, cherry: 3, orange: 3, apple: 2, fig: 1}
 */
+  let fruitsObj = {};
+  for(let item of fruitBasket) {
+    if(Object.keys(fruitsObj).includes(item)){
+    for(let key of Object.keys(fruitsObj)){
+      if(key == item) {
+       fruitsObj[key] += 1;
+        break;
+      }
+    }
+  } 
+  else {
+    fruitsObj[item] = 1;
+  }
+  }
+  console.log(fruitsObj);
 
 /* 
 
@@ -62,6 +104,12 @@ Output:
 [['banana', 2], ['cherry', 3], ['orange', 3], ['apple', 2], ['fig', 1]]
 */
 
+  let fruitsArray = [];
+  for(let key of Object.keys(fruitsObj)) {
+    fruitsArray.push([key, fruitsObj[key]]);
+  }
+  console.log(fruitsArray);
+
 const data = [
   [1, 2, 3],
   [4, 5, 6],
@@ -70,6 +118,11 @@ const data = [
 ];
 
 // Using reduce flat data array
+let flatData = data.reduce((acc, item) => {
+  acc = acc + item.join(" ")+" ";
+return acc;
+}, "").trim().split(" "); 
+console.log(flatData);
 
 const dataTwo = [
   [1, 2, 3],
@@ -79,7 +132,11 @@ const dataTwo = [
 ];
 
 // Using reduce flat dataTwo array
-
+let flatDataTwo = dataTwo.reduce((acc, item) => {
+  acc = acc + item.join(" ")+" ";
+return acc;
+}, "").trim().replaceAll(','," ").split(" "); 
+console.log(flatDataTwo);
 /*
 
 Create these functions which accepts a number value and returns a number value:
@@ -89,6 +146,21 @@ Create these functions which accepts a number value and returns a number value:
   - `triple` triples the input 
   - `half` converts the value to half and return the integer value not decimal (use Math.round(21.5) => 21)
 */
+function increment(val){
+  return val+1;
+}
+function double(val){
+  return val*2;
+}
+function decrement(val){
+  return val-1;
+}
+function triple(val){
+  return val*3;
+}
+function half(val){
+  return Math.round(val/2);
+}
 
 let pipeline = [
   increment,
@@ -114,6 +186,11 @@ EXAMPLE:
 
   ...
 */
+let initialValue = 3;
+for(let fun of pipeline) {
+  initialValue = fun(initialValue);
+}
+console.log(initialValue);
 
 let pipeline2 = [
   increment,
@@ -130,3 +207,8 @@ let pipeline2 = [
 ];
 
 // Find the output using pipeline2 the initial value if 8
+ initialValue = 8;
+for(let fun of pipeline2) {
+  initialValue = fun(initialValue);
+}
+console.log(initialValue);
