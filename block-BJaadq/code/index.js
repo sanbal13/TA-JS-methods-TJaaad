@@ -2,34 +2,109 @@
 
 function countAllPeople() {
   // your code goes here
+  let count = 0;
+  for (let house of got.houses) {
+    for (let person of house.people){
+         ++count;
+    }
+  }
+  return count;
 }
 
 function peopleByHouses() {
   // your code goes here
+  let count;
+  let arr = {};
+  for (let house of got.houses) {
+    count = 0;
+    for (let person of house.people){
+         ++count;
+    }
+    arr[house.name] = count;
+  }
+  return arr;
 }
+
 
 function everyone() {
   // your code goes here
+  let arr = [];
+  for (let house of got.houses) {
+    for (let person of house.people){
+         arr.push(person.name);
+    }
+  }
+  return arr;
 }
 
 function nameWithS() {
   // your code goes here
+  let arr = [];
+  for (let house of got.houses) {
+    for (let person of house.people){
+      if(person.name.toLowerCase().includes("s")){
+         arr.push(person.name);
+      }    
+    }
+  }
+  return arr;
 }
 
 function nameWithA() {
   // your code goes here
+  let arr = [];
+  for (let house of got.houses) {
+    for (let person of house.people){
+      if(person.name.toLowerCase().includes("a")){
+         arr.push(person.name);
+      }    
+    }
+  }
+  return arr;
 }
+
 
 function surnameWithS() {
   // your code goes here
+  let arr = [];
+  for (let house of got.houses) {
+    for (let person of house.people){
+      let name = person.name;
+      if(name.charAt(name.indexOf(" ") + 1) === 'S'){
+         arr.push(person.name);
+      }    
+    }
+  }
+  return arr;
 }
 
 function surnameWithA() {
   // your code goes here
+  let arr = [];
+  for (let house of got.houses) {
+    for (let person of house.people){
+      let name = person.name;
+      if(name.charAt(name.indexOf(" ") + 1) === 'A'){
+         arr.push(person.name);
+      }    
+    }
+  }
+  return arr;
 }
 
 function peopleNameOfAllHouses() {
   // your code goes here
+  let obj = {};
+  let arr;
+  for (let house of got.houses) {
+     arr = [];
+    for (let person of house.people){      
+      let name = person.name;      
+         arr.push(name);
+      }  
+      obj[house.name] = arr; 
+    }  
+  return obj;
 }
 
 // Testing your result after writing your function
