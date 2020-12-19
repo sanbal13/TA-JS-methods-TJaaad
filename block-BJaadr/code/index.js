@@ -2,34 +2,85 @@
 
 function countAllPeople() {
   // your code goes here
+  return got.houses.reduce((acc, house) =>{
+    house.people.forEach((people) => ++acc);
+    return acc;
+  }
+  ,0);
 }
 
 function peopleByHouses() {
   // your code goes here
+  return got.houses.reduce((acc, house) =>{
+    acc[house.name] = house.people.length;
+    return acc;
+  }, {});
 }
 
 function everyone() {
   // your code goes here
+  return got.houses.reduce((acc, house) => {
+    house.people.forEach((people) => acc.push(people.name))
+  return acc;
+  },[]);
 }
 
 function nameWithS() {
   // your code goes here
+ return got.houses.reduce((acc, house) => {
+   house.people.forEach((people) => {
+     if(people.name.toLowerCase().includes('s')) {
+       acc.push(people.name);
+     }
+   })
+   return acc;
+ }, []);
 }
+  
 
 function nameWithA() {
   // your code goes here
+  return got.houses.reduce((acc, house) => {
+    house.people.forEach((people) => {
+      if(people.name.toLowerCase().includes('a')) {
+        acc.push(people.name);
+      }
+    })
+    return acc;
+  }, []);
 }
 
 function surnameWithS() {
   // your code goes here
+return got.houses.reduce((acc, house) => {
+  house.people.forEach((people) => {    
+    if (people.name.split(" ")[1].startsWith('S')) {
+      acc.push(people.name);
+    }
+  })
+  return acc;
+}, []);
 }
 
 function surnameWithA() {
   // your code goes here
+  return got.houses.reduce((acc, house) => {
+    house.people.forEach((people) => {    
+      if (people.name.split(" ")[1].startsWith('A')) {
+        acc.push(people.name);
+      }
+    })
+    return acc;
+  }, []);
 }
 
 function peopleNameOfAllHouses() {
   // your code goes here
+  return got.houses.reduce((acc,house) => {
+    acc[house.name] = [];
+    house.people.forEach((people) => acc[house.name].push(people.name));
+    return acc;
+  },{});
 }
 
 // Testing your result after writing your function
